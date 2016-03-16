@@ -29,28 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblAccessionNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.cbFound = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.Location = new System.Drawing.Point(253, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(253, 11);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(72, 23);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "Buscar";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox1
+            // lblAccessionNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(177, 20);
-            this.textBox1.TabIndex = 1;
+            this.lblAccessionNumber.Location = new System.Drawing.Point(70, 12);
+            this.lblAccessionNumber.Name = "lblAccessionNumber";
+            this.lblAccessionNumber.Size = new System.Drawing.Size(177, 20);
+            this.lblAccessionNumber.TabIndex = 1;
             // 
             // label1
             // 
@@ -61,35 +62,36 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Protocolo";
             // 
-            // button2
+            // btnPrint
             // 
-            this.button2.Location = new System.Drawing.Point(253, 40);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Imprimir";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPrint.Location = new System.Drawing.Point(253, 40);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 4;
+            this.btnPrint.Text = "Imprimir";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // checkBox1
+            // cbFound
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(167, 44);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(81, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Encontrado";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbFound.AutoSize = true;
+            this.cbFound.Location = new System.Drawing.Point(167, 44);
+            this.cbFound.Name = "cbFound";
+            this.cbFound.Size = new System.Drawing.Size(81, 17);
+            this.cbFound.TabIndex = 5;
+            this.cbFound.Text = "Encontrado";
+            this.cbFound.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(352, 86);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.cbFound);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblAccessionNumber);
+            this.Controls.Add(this.btnSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Copia de informe";
@@ -100,11 +102,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox lblAccessionNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.CheckBox cbFound;
     }
 }
 
