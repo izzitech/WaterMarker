@@ -38,9 +38,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(253, 11);
+            this.btnSearch.Location = new System.Drawing.Point(70, 44);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(72, 23);
+            this.btnSearch.Size = new System.Drawing.Size(72, 22);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Buscar";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -52,6 +52,7 @@
             this.lblAccessionNumber.Name = "lblAccessionNumber";
             this.lblAccessionNumber.Size = new System.Drawing.Size(177, 20);
             this.lblAccessionNumber.TabIndex = 1;
+            this.lblAccessionNumber.TextChanged += new System.EventHandler(this.lblAccessionNumber_TextChanged);
             // 
             // label1
             // 
@@ -64,9 +65,9 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(253, 40);
+            this.btnPrint.Location = new System.Drawing.Point(253, 11);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.Size = new System.Drawing.Size(77, 22);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Imprimir";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -75,7 +76,7 @@
             // cbFound
             // 
             this.cbFound.AutoSize = true;
-            this.cbFound.Location = new System.Drawing.Point(167, 44);
+            this.cbFound.Location = new System.Drawing.Point(148, 48);
             this.cbFound.Name = "cbFound";
             this.cbFound.Size = new System.Drawing.Size(81, 17);
             this.cbFound.TabIndex = 5;

@@ -44,29 +44,99 @@ namespace WaterMarker
             }
         }
 
-        private void InsertWaterMarkToDocFile()
+        private void InsertWaterMarkToDocFile(FileInfo file)
         {
             // 2 - Convert .doc to odt.
             // soffice --headless --convert-to odt --outdir documents/ *.doc <- Useless!!! Generates an XML Only file.
             // soffice --headless --convert-to writer8 --outdir documents/ *.doc <- Use this one, take care about fucking .writer8 extension...
+            Console.WriteLine("Calling LibreOffice...");
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            izzilib.Interact.LaunchInShell(Properties.Settings.Default.UNC, @"C:\Program Files (x86)\LibreOffice 4\program\soffice.exe", "--headless --convert-to writer8 --outdir \"" + documentsFolder + "\" " + file.FullName);
+            Console.WriteLine("File: " + file.FullName + " converted.");
+            Console.WriteLine("Saved on: " + documentsFolder);
 
+            FileInfo writer8File = new FileInfo(Path.Combine(documentsFolder, file.Name.Split('.')[0] + ".writer8"));
+            Console.WriteLine(writer8File.FullName);
+            UnZipOnFolder(writer8File);
+            
             // 3 - Decompress report.
+
+
             // 4 - Add values and content.
+
+            
             // 5 - Compress report on odt file.
+
+
+        }
+
+        // ***
+        // This method should be moved to izzilib
+        // ***
+
+        public static void UnZipOnFolder(FileInfo inFile)
+        {
+            string appPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string zipCommand = "e \"{0}\" o\"{1}\" -r";
+            string zipCompressorFolder = "7-Zip";
+            string zipCompressorFileName = "7z.exe";
+            string zipError = "Unable to compress file: {0}";
+
+            string zipCompressor = Path.Combine(appPath, zipCompressorFolder);
+            string arguments = string.Format(zipCommand, inFile.FullName, inFile.Directory + inFile.Name.Split('.')[0]);
+
+            Console.WriteLine(arguments);
+
+            System.Diagnostics.Process zipCompressorProcess = izzilib.Interact.LaunchInShell(zipCompressor, zipCompressorFileName, arguments);
+
+            while (!zipCompressorProcess.HasExited) { }
+            if (zipCompressorProcess.ExitCode == 0)
+            {
+                // Directory.Delete(inFolder);
+            }
+            else
+            {
+                throw new Exception(string.Format(zipError, inFile.Name));
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             int AccessionNumber;
-            if (int.TryParse(lblAccessionNumber.Text, out AccessionNumber))
+            if (lblAccessionNumber.Text.Length == 8)
             {
-                SearchReport(Properties.Settings.Default.UNC, AccessionNumber);
+                lblAccessionNumber.BackColor = Color.LightGreen;
+                if (int.TryParse(lblAccessionNumber.Text, out AccessionNumber))
+                {
+                    SearchReport(Properties.Settings.Default.UNC, AccessionNumber);
+                }
+            }
+            else
+            {
+                lblAccessionNumber.BackColor = Color.Pink;
             }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(globalReportPath);
+            InsertWaterMarkToDocFile(new FileInfo(globalReportPath));
+        }
 
+        private void lblAccessionNumber_TextChanged(object sender, EventArgs e)
+        {
+            switch (lblAccessionNumber.Text.Length)
+            {
+                case 0:
+                    lblAccessionNumber.BackColor = Color.White;
+                    break;
+                case 8:
+                    lblAccessionNumber.BackColor = Color.LightGreen;
+                    break;
+                default:
+                    lblAccessionNumber.BackColor = Color.Pink;
+                    break;
+            }
         }
     }
 }
